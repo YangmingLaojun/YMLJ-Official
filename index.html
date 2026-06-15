@@ -1,16 +1,278 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>阳明老君 (YMLJ)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阳明老君 (YMLJ) | 官方网站</title>
     <style>
-        body { text-align: center; font-family: sans-serif; padding-top: 150px; }
-        h1 { font-size: 3em; }
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #161e2e;
+            --text-main: #e5e7eb;
+            --text-muted: #9ca3af;
+            --accent-cyan: #4fd1c5;
+            --accent-glow: rgba(79, 209, 197, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* 纯 CSS 绘制白青融合 Logo */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .logo-circle {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffffff 0%, #b2f5ea 50%, #4fd1c5 100%);
+            box-shadow: 0 0 40px rgba(79, 209, 197, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            margin: 0 auto 20px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-text-cn {
+            color: #0d0d0d;
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+        .logo-text-en {
+            color: #0d0d0d;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-top: 2px;
+        }
+        
+        .title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        .subtitle {
+            font-size: 16px;
+            color: var(--accent-cyan);
+            letter-spacing: 4px;
+        }
+
+        /* 内容卡片模块 */
+        .section {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(79, 209, 197, 0.2);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        .section-title {
+            font-size: 20px;
+            color: var(--accent-cyan);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 15px;
+        }
+        .section-title::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 20px;
+            background-color: var(--accent-cyan);
+            margin-right: 12px;
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-muted);
+            text-align: justify;
+        }
+
+        ul {
+            list-style-type: none;
+            margin-top: 15px;
+        }
+        li {
+            margin-bottom: 15px;
+            color: var(--text-muted);
+            position: relative;
+            padding-left: 20px;
+        }
+        li::before {
+            content: "•";
+            color: var(--accent-cyan);
+            position: absolute;
+            left: 0;
+            font-size: 20px;
+            line-height: 1.4;
+        }
+        
+        .highlight {
+            color: #ffffff;
+            font-weight: 600;
+        }
+        
+        .address-box {
+            background: rgba(0,0,0,0.3);
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            color: var(--accent-cyan);
+            word-break: break-all;
+            margin: 10px 0;
+            border: 1px dashed rgba(79, 209, 197, 0.3);
+        }
+
+        /* 矩阵链接区域 */
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .matrix-item {
+            background: rgba(255,255,255,0.03);
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+        .matrix-item:hover {
+            border-color: rgba(79, 209, 197, 0.4);
+            background: rgba(255,255,255,0.05);
+        }
+        .matrix-label {
+            font-size: 13px;
+            color: var(--accent-cyan);
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .matrix-value {
+            color: #fff;
+            font-size: 15px;
+            text-decoration: none;
+            word-break: break-all;
+        }
+        a.matrix-value:hover {
+            text-decoration: underline;
+        }
+
+        @media (min-width: 600px) {
+            .matrix-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .matrix-item.full-width {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .section {
+                padding: 25px 20px;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>阳明老君</h1>
-    <p>心学、道法与数字资产的极简实践。</p>
-    <p>Contact: [Email-yangminglaojun@qq.com/X-@yangminglaojun/微信-LaoJun2088]</p>
+
+<div class="container">
+    <!-- 头部与 Logo -->
+    <div class="header">
+        <div class="logo-circle">
+            <div class="logo-text-cn">阳明老君</div>
+            <div class="logo-text-en">YMLJ</div>
+        </div>
+        <h1 class="title">阳明老君 (YMLJ)</h1>
+        <div class="subtitle">生态与资产官方白皮书</div>
+    </div>
+
+    <!-- 第一部分：实力 -->
+    <div class="section">
+        <h2 class="section-title">一、 实力：八年周期，知行合一，遵循规律</h2>
+        <p>我于 2017 年底入行区块链，完整经历两轮比特币四年周期。核心战绩：2017末-2018初，以太零从立项历时一个月，融资 <span class="highlight">3500 ETH</span>，上线交易市值 <span class="highlight">12 亿</span>；2019-2021年，<span class="highlight">20万</span> 抄底 ETH 升到约 <span class="highlight">300万</span>。</p>
+        <p>我的底层思维，构筑于阳明心学的“知行合一”与老君道法的“遵循规律”。在加密市场的起伏中，我坚持修行：</p>
+        <ul>
+            <li><span class="highlight">以道御术：</span> 洞察周期规律，顺势而为与逆流而为。</li>
+            <li><span class="highlight">心学定力：</span> 屏蔽杂讯，向内求，在实战中致良知。</li>
+        </ul>
+        <p style="margin-top: 15px;">老君 BTC 规律群：9U基础 ｜ 399U高级 ｜ 3999U顶级（微信：LaoJun2088）。<br>八年浮沉，我是市场的幸存者，亦是规律的践行者。现在，我将这些穿越周期的认知，注入到阳明老君（YMLJ）的生态之中。</p>
+    </div>
+
+    <!-- 第二部分：资产 -->
+    <div class="section">
+        <h2 class="section-title">二、 资产：YMLJ 🔁 X 注意力价值闭环</h2>
+        <p>“金矿在变，但挖金矿的人永远需要指引和工具。” 阳明老君(YMLJ) 是我个人认知与 X 注意力价值形成的金融映射。</p>
+        <ul>
+            <li><span class="highlight">发行参数：</span> 在 BSC 链发行 2100 万枚。BSC 依托币安流量，覆盖全球华语用户，与我的基本盘高度吻合。</li>
+            <li><span class="highlight">合约地址：</span>
+                <div class="address-box">0x90ca6a7c69337a508b974668ac1d8e023c44c11b</div>
+            </li>
+            <li><span class="highlight">价值锚定：</span> YMLJ 锚定阳明老君未来 <span class="highlight">50% 的关联利润</span>（包括课程、X 广告、推广、授徒等收入）。这些场外收入将用于在交易市场公开回购并销毁，实现绝对通缩。</li>
+            <li><span class="highlight">早鸟发售：</span> 发售少量份额，个人上限 1万U ｜ 10万 YMLJ。你们是投资人，是智囊团，更是合伙人。</li>
+            <li><span class="highlight">运营原则：</span> 用户量达到 1000，YMLJ 上架去中心化交易平台（DEX），初始价格 0.2~0.5 USDT。出售仅在交易平台进行，不向特定个人私下兜售。稳赚快运营，不赚不稳的钱。</li>
+        </ul>
+    </div>
+
+    <!-- 第三部分：矩阵 -->
+    <div class="section">
+        <h2 class="section-title">三、 全网唯一官方矩阵</h2>
+        <div class="matrix-grid">
+            <div class="matrix-item full-width">
+                <span class="matrix-label">官方白皮书 (X 平台)</span>
+                <a href="https://x.com/yangminglaojun/status/2054821740677837210" target="_blank" class="matrix-value">x.com/yangminglaojun/status/2054821740677837210</a>
+            </div>
+            <div class="matrix-item">
+                <span class="matrix-label">官方邮箱</span>
+                <a href="mailto:admin@yangminglaojun.com" class="matrix-value">admin@yangminglaojun.com</a>
+            </div>
+            <div class="matrix-item">
+                <span class="matrix-label">官方微信</span>
+                <span class="matrix-value">LaoJun2088</span>
+            </div>
+            <div class="matrix-item">
+                <span class="matrix-label">官方推特 (X)</span>
+                <a href="https://x.com/yangminglaojun" target="_blank" class="matrix-value">@yangminglaojun</a>
+            </div>
+            <div class="matrix-item">
+                <span class="matrix-label">官网入口二</span>
+                <a href="https://www.ymlj.org" target="_blank" class="matrix-value">www.ymlj.org</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
