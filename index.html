@@ -154,49 +154,103 @@
             border: 1px dashed rgba(79, 209, 197, 0.3);
         }
 
-        /* 矩阵链接区域 */
-        .matrix-grid {
+        /* 生态矩阵专属样式 */
+        .ecosystem-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
             margin-top: 20px;
         }
-        .matrix-item {
-            background: rgba(255,255,255,0.03);
-            padding: 15px 20px;
+        .ecosystem-card {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(79, 209, 197, 0.15);
             border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid transparent;
-            transition: all 0.2s;
+            padding: 20px;
+            transition: all 0.3s ease;
         }
-        .matrix-item:hover {
+        .ecosystem-card:hover {
             border-color: rgba(79, 209, 197, 0.4);
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.03);
         }
-        .matrix-label {
-            font-size: 13px;
+        .ecosystem-card.core-hub {
+            background: rgba(79, 209, 197, 0.05); /* 核心枢纽高亮背景 */
+            border-color: rgba(79, 209, 197, 0.3);
+        }
+        .ecosystem-category {
+            font-size: 16px;
             color: var(--accent-cyan);
-            margin-bottom: 5px;
-            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-weight: 600;
+            letter-spacing: 1px;
         }
-        .matrix-value {
-            color: #fff;
-            font-size: 15px;
+        .ecosystem-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .ecosystem-list li {
+            margin-bottom: 12px;
+            padding-left: 0; 
+        }
+        .ecosystem-list li::before {
+            display: none; /* 移除全局圆点 */
+        }
+        .ecosystem-list a, .ecosystem-list span.text-item {
             text-decoration: none;
-            word-break: break-all;
+            color: var(--text-main);
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.2s ease;
         }
-        a.matrix-value:hover {
-            text-decoration: underline;
+        .ecosystem-list a:hover {
+            color: var(--accent-cyan);
+        }
+        .ecosystem-list span.id-text {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: right;
         }
 
-        @media (min-width: 600px) {
-            .matrix-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .matrix-item.full-width {
-                grid-column: span 2;
-            }
+        /* 进度条专属样式 */
+        .progress-container {
+            background: rgba(0,0,0,0.3);
+            border: 1px dashed rgba(79, 209, 197, 0.3);
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+        .progress-bar-bg {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border-radius: 4px;
+            height: 6px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: var(--accent-cyan);
+            box-shadow: 0 0 10px var(--accent-cyan);
+            transition: width 0.5s ease;
+        }
+        .progress-note {
+            margin-top: 10px;
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.4;
         }
 
         @media (max-width: 600px) {
@@ -209,7 +263,6 @@
 <body>
 
 <div class="container">
-    <!-- 头部与 Logo -->
     <div class="header">
         <div class="logo-circle">
             <div class="logo-text-cn">阳明老君</div>
@@ -219,7 +272,6 @@
         <div class="subtitle">生态与资产官方白皮书</div>
     </div>
 
-    <!-- 第一部分：实力 -->
     <div class="section">
         <h2 class="section-title">一、 实力：八年周期，知行合一，遵循规律</h2>
         <p>我于 2017 年底入行区块链，完整经历两轮比特币四年周期。核心战绩：2017末-2018初，以太零从立项历时一个月，融资 <span class="highlight">3500 ETH</span>，上线交易市值 <span class="highlight">12 亿</span>；2019-2021年，<span class="highlight">20万</span> 抄底 ETH 升到约 <span class="highlight">300万</span>。</p>
@@ -231,45 +283,85 @@
         <p style="margin-top: 15px;">老君 BTC 规律群：9U基础 ｜ 399U高级 ｜ 3999U顶级（微信：LaoJun2088）。<br>八年浮沉，我是市场的幸存者，亦是规律的践行者。现在，我将这些穿越周期的认知，注入到阳明老君（YMLJ）的生态之中。</p>
     </div>
 
-    <!-- 第二部分：资产 -->
     <div class="section">
-        <h2 class="section-title">二、 资产：YMLJ 🔁 X 注意力价值闭环</h2>
-        <p>“金矿在变，但挖金矿的人永远需要指引和工具。” 阳明老君(YMLJ) 是我个人认知与 X 注意力价值形成的金融映射。</p>
+        <h2 class="section-title">二、 资产：YMLJ 🔁 全域生态价值闭环</h2>
+        <p>“金矿在变，但挖金矿的人永远需要指引和工具。” 阳明老君(YMLJ) 是我个人认知与全域生态影响力形成的金融映射。</p>
         <ul>
-            <li><span class="highlight">发行参数：</span> 在 BSC 链发行 2100 万枚。BSC 依托币安流量，覆盖全球华语用户，与我的基本盘高度吻合。</li>
+            <li><span class="highlight">发行参数：</span> 在 BSC 链发行 2100 万枚。依托 BSC 强大的全球化流动性与底层基础设施，完美契合 YMLJ 无国界、全矩阵的生态扩张愿景。</li>
             <li><span class="highlight">合约地址：</span>
                 <div class="address-box">0x90ca6a7c69337a508b974668ac1d8e023c44c11b</div>
             </li>
-            <li><span class="highlight">价值锚定：</span> YMLJ 锚定阳明老君未来 <span class="highlight">50% 的关联利润</span>（包括课程、X 广告、推广、授徒等收入）。这些场外收入将用于在交易市场公开回购并销毁，实现绝对通缩。</li>
-            <li><span class="highlight">早鸟发售：</span> 发售少量份额，个人上限 1万 USDT ｜ 10万 YMLJ。你们是投资人，是智囊团，更是合伙人。</li>
+            <li><span class="highlight">价值锚定：</span> YMLJ 锚定阳明老君未来 <span class="highlight">50% 的关联利润</span>（包括课程、授徒、打赏、广告等收入）。这些场外收入将用于在交易市场公开回购并销毁，实现绝对通缩。</li>
+            <li><span class="highlight">销毁进度：</span> 实时记录回购销毁数据，公开透明。
+                <div class="progress-container">
+                    <div class="progress-header">
+                        <span>累计销毁：0 YMLJ</span>
+                        <span>当前通缩率：0%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill"></div>
+                    </div>
+                    <div class="progress-note">* 销毁合约及链上哈希记录将在 DEX 上线并执行首次回购后同步更新展示。</div>
+                </div>
+            </li>
+            <li><span class="highlight">早鸟发售：</span> 发售少量份额，静水流深，纳入日常。个人认购上限为 1 万 USDT（即 10 万 YMLJ）。在这里，你们不仅是投资人，更是智囊团与同行的合伙人。
+                <ul>
+                    <li><span class="highlight">早鸟价格：</span> 1 YMLJ ＝ 0.1 USD（若使用 ETH ｜ BNB，按转账时币安现货价格自动折算）。</li>
+                    <li><span class="highlight">募资地址：</span>
+                        <div class="address-box">0x71D1815cEcfe14540AAf554Fb48811341402bE1a</div>
+                    </li>
+                    <li><span class="highlight">支持网络：</span> 接受 ERC20 与 BSC 链转账（支持 USDT ｜ USDC ｜ ETH ｜ BNB）。</li>
+                    <li><span class="highlight">认购流程：</span> 转账完成后，请及时联络官方渠道（官方微信 ｜ QQ群 ｜ 电报群管理员）提供凭证。客服核对无误后，会将您的 YMLJ 直接发放到原转币地址。</li>
+                </ul>
+            </li>
             <li><span class="highlight">运营原则：</span> 用户量达到 1000，YMLJ 上架去中心化交易平台（DEX），初始价格 0.2~0.5 USDT。出售仅在交易平台进行，不向特定个人私下兜售。稳赚快运营，不赚不稳的钱。</li>
         </ul>
     </div>
 
-    <!-- 第三部分：矩阵 -->
     <div class="section">
-        <h2 class="section-title">三、 全网唯一官方矩阵</h2>
-        <div class="matrix-grid">
-            <div class="matrix-item full-width">
-                <span class="matrix-label">官方白皮书 (X 平台)</span>
-                <a href="https://x.com/yangminglaojun/status/2054821740677837210" target="_blank" class="matrix-value">x.com/yangminglaojun/status/2054821740677837210</a>
+        <h2 class="section-title">三、 全网生态矩阵</h2>
+        <div class="ecosystem-grid">
+            
+            <div class="ecosystem-card core-hub">
+                <div class="ecosystem-category">核心枢纽</div>
+                <ul class="ecosystem-list">
+                    <li><a href="https://ymlj.org" target="_blank">第二官网 <span class="id-text">ymlj.org</span></a></li>
+                    <li><a href="https://x.com/yangminglaojun" target="_blank">推特 (X) <span class="id-text">@yangminglaojun</span></a></li>
+                    <li><a href="https://x.com/yangminglaojun/status/2054821740677837210" target="_blank">白皮书 <span class="id-text">点击查阅</span></a></li>
+                    <li><a href="mailto:admin@yangminglaojun.com">电子邮箱 <span class="id-text">admin@yangminglaojun.com</span></a></li>
+                    <li><span class="text-item">官方微信 <span class="id-text">LaoJun2088</span></span></li>
+                </ul>
             </div>
-            <div class="matrix-item">
-                <span class="matrix-label">官方邮箱</span>
-                <a href="mailto:admin@yangminglaojun.com" class="matrix-value">admin@yangminglaojun.com</a>
+
+            <div class="ecosystem-card">
+                <div class="ecosystem-category">深度研报</div>
+                <ul class="ecosystem-list">
+                    <li><span class="text-item">微信公众号 <span class="id-text">yangminglaojun2026</span></span></li>
+                    <li><a href="https://www.zhihu.com/people/pan-xing-chuan-44" target="_blank">知乎 <span class="id-text">阳明老君</span></a></li>
+                    <li><a href="https://yangminglaojun.substack.com" target="_blank">Substack <span class="id-text">@yangminglaojun</span></a></li>
+                    <li><a href="https://paragraph.xyz/@yangminglaojun" target="_blank">Paragraph <span class="id-text">@yangminglaojun</span></a></li>
+                    <li><a href="http://tianya666.com" target="_blank">天涯社区 <span class="id-text">阳明老君</span></a></li>
+                </ul>
             </div>
-            <div class="matrix-item">
-                <span class="matrix-label">官方微信</span>
-                <span class="matrix-value">LaoJun2088</span>
+
+            <div class="ecosystem-card">
+                <div class="ecosystem-category">核心社群</div>
+                <ul class="ecosystem-list">
+                    <li><span class="text-item">知识星球 <span class="id-text">知识号: yangminglaojun</span></span></li>
+                    <li><a href="https://t.me/yangminglaojun_group" target="_blank">电报群 <span class="id-text">阳明老君交流群</span></a></li>
+                    <li><span class="text-item">QQ群 <span class="id-text">1051464333</span></span></li>
+                </ul>
             </div>
-            <div class="matrix-item">
-                <span class="matrix-label">官方推特 (X)</span>
-                <a href="https://x.com/yangminglaojun" target="_blank" class="matrix-value">@yangminglaojun</a>
+
+            <div class="ecosystem-card">
+                <div class="ecosystem-category">日常动态</div>
+                <ul class="ecosystem-list">
+                    <li><a href="https://web.okjike.com/u/8a3891ab-5efc-45bc-a09d-32df27b5c38f" target="_blank">即刻 <span class="id-text">阳明老君</span></a></li>
+                    <li><a href="https://weibo.com/u/5397770116" target="_blank">微博 <span class="id-text">阳明老君</span></a></li>
+                    <li><a href="https://www.instagram.com/yangminglaojun2026/" target="_blank">Instagram <span class="id-text">@yangminglaojun2026</span></a></li>
+                </ul>
             </div>
-            <div class="matrix-item">
-                <span class="matrix-label">官网入口二</span>
-                <a href="https://www.ymlj.org" target="_blank" class="matrix-value">www.ymlj.org</a>
-            </div>
+
         </div>
     </div>
 </div>
