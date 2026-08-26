@@ -154,6 +154,62 @@
             border: 1px dashed rgba(79, 209, 197, 0.3);
         }
 
+        /* 故事/横幅过渡模块 (新增) */
+        .story-banner {
+            background: linear-gradient(135deg, rgba(22, 30, 46, 0.8) 0%, rgba(79, 209, 197, 0.05) 100%);
+            border-left: 4px solid var(--accent-cyan);
+            border-radius: 0 12px 12px 0;
+            padding: 35px 40px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(79, 209, 197, 0.1);
+            border-right: 1px solid rgba(79, 209, 197, 0.1);
+            border-bottom: 1px solid rgba(79, 209, 197, 0.1);
+        }
+        .story-title {
+            font-size: 14px;
+            color: var(--accent-cyan);
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .story-quote {
+            font-size: 18px;
+            color: #fff;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+        .story-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+        .story-chapter {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-right: 5px;
+        }
+        .story-link-btn {
+            background: rgba(79, 209, 197, 0.08);
+            border: 1px solid rgba(79, 209, 197, 0.3);
+            color: var(--accent-cyan);
+            padding: 6px 14px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+        .story-link-btn:hover {
+            background: var(--accent-cyan);
+            color: #0b0f19;
+            box-shadow: 0 0 12px var(--accent-glow);
+            font-weight: bold;
+        }
+
         /* 生态矩阵专属样式 */
         .ecosystem-grid {
             display: grid;
@@ -257,6 +313,14 @@
             .section {
                 padding: 25px 20px;
             }
+            .story-banner {
+                padding: 25px 20px;
+            }
+            .story-chapter {
+                display: block;
+                width: 100%;
+                margin-bottom: 5px;
+            }
         }
     </style>
 </head>
@@ -276,7 +340,7 @@
     <!-- 第一部分：实力 -->
     <div class="section">
         <h2 class="section-title">一、 实力：八年周期，知行合一，遵循规律</h2>
-        <p>我于 2017 年底入行区块链，完整经历两轮比特币四年周期。核心战绩：2017末-2018初，以太零从立项历时一个月，融资 <span class="highlight">3500 ETH</span>，上线交易市值 <span class="highlight">24 亿</span>；2019-2021年，<span class="highlight">20万</span> 抄底 ETH 升到约 <span class="highlight">300万</span>。</p>
+        <p>我于 2017 年底入行区块链，完整经历两轮比特币四年周期。核心战绩：2017末-2018初，以太零从立项历时一个月，融资 <span class="highlight">3500 ETH</span>，上线交易市值 <span class="highlight">12 亿</span>；2019-2021年，<span class="highlight">20万</span> 抄底 ETH 升到约 <span class="highlight">300万</span>。</p>
         <p>我的底层思维，构筑于阳明心学的“知行合一”与老君道法的“遵循规律”。在加密市场的起伏中，我坚持修行：</p>
         <ul>
             <li><span class="highlight">以道御术：</span> 洞察周期规律，顺势而为与逆流而为。</li>
@@ -294,8 +358,7 @@
             <li><span class="highlight">合约地址：</span>
                 <div class="address-box">0x90ca6a7c69337a508b974668ac1d8e023c44c11b</div>
             </li>
-            <li><span class="highlight">价值锚定：</span> YMLJ 锚定阳明老君未来 <span class="highlight">50% 的关联利润</span>（包括课程、授徒、打赏、广告和新生态收入）。这些场外收入将用于在交易市场公开回购并销毁，实现绝对通缩。</li>
-            <li><span class="highlight">生态扩张：</span> YMLJ 可用于实业支付和新的生态应用场景。
+            <li><span class="highlight">价值锚定：</span> YMLJ 锚定阳明老君未来 <span class="highlight">50% 的关联利润</span>（包括课程、授徒、打赏、广告等收入）。这些场外收入将用于在交易市场公开回购并销毁，实现绝对通缩。</li>
             <li><span class="highlight">销毁进度：</span> 实时记录回购销毁数据，公开透明。
                 <div class="progress-container">
                     <div class="progress-header">
@@ -308,9 +371,9 @@
                     <div class="progress-note">* 销毁合约及链上哈希记录将在 DEX 上线并执行首次回购后同步更新展示。</div>
                 </div>
             </li>
-            <li><span class="highlight">早鸟发售：</span> 发售少量份额，静水流深。在这里，你们不仅是投资人，更是智囊团与同行的合伙人。
+            <li><span class="highlight">早鸟发售：</span> 发售少量份额，静水流深，纳入日常。个人认购上限为 1 万 USDT（即 10 万 YMLJ）。在这里，你们不仅是投资人，更是智囊团与同行的合伙人。
                 <ul>
-                    <li><span class="highlight">早鸟价格：</span> 1 YMLJ ＝ 0.1 USDT（若使用 ETH ｜ BNB，按转账时币安现货价格自动折算）。</li>
+                    <li><span class="highlight">早鸟价格：</span> 1 YMLJ ＝ 0.1 USD（若使用 ETH ｜ BNB，按转账时币安现货价格自动折算）。</li>
                     <li><span class="highlight">募资地址：</span>
                         <div class="address-box">0x71D1815cEcfe14540AAf554Fb48811341402bE1a</div>
                     </li>
@@ -318,8 +381,19 @@
                     <li><span class="highlight">认购流程：</span> 转账完成后，请及时联络官方渠道（官方微信 ｜ QQ群 ｜ 电报群管理员）提供凭证。客服核对无误后，会将您的 YMLJ 直接发放到原转币地址。</li>
                 </ul>
             </li>
-            <li><span class="highlight">运营原则：</span> 用户量达到 1000，YMLJ 上架去中心化交易平台（DEX），初始价格 0.2~0.5 USDT，稳赚快运营。</li>
+            <li><span class="highlight">运营原则：</span> 用户量达到 1000，YMLJ 上架去中心化交易平台（DEX），初始价格 0.2~0.5 USDT。出售仅在交易平台进行，不向特定个人私下兜售。稳赚快运营，不赚不稳的钱。</li>
         </ul>
+    </div>
+
+    <!-- 视觉过渡横幅：连载小说 -->
+    <div class="story-banner">
+        <div class="story-title">「 阳明老君的世界 」</div>
+        <div class="story-quote">“ YMLJ的故事，不止在链上——也在一部连载小说里。 ”</div>
+        <div class="story-links">
+            <span class="story-chapter">《雅典娜沦陷记·伍》：</span>
+            <a href="https://x.com/yangminglaojun/status/2091887215207141477?s=20" target="_blank" class="story-link-btn">阅读 (X平台)</a>
+            <a href="https://zhuanlan.zhihu.com/p/2075186322239764159" target="_blank" class="story-link-btn">阅读 (知乎)</a>
+        </div>
     </div>
 
     <!-- 第三部分：全新生态矩阵 -->
